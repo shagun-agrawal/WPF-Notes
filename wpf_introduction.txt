@@ -1,0 +1,112 @@
+Introduction Of Wpf:
+---------------------
+
+->> Windows Present foundation used for desktop applications used in banking and medical organization
+    it was introduce in .NET framework 3.0. For web development other technologies are used like
+    ASP .NET and  ASP .NET MVC.
+
+
+******************************************************************************************************************************************************************
+
+WPF Architecture:
+----------------- 
+
+->> It is devided into three components
+  1): Managed Layer : In these layer three library(collection of classes) comes 
+   
+      a): WindowBase: It holds the more basic elements that are capable to be reused outside the WPF enviroment.
+      ---------------- Like dispatcher object and dependencies object.
+     
+     
+      b): PresentaionFrameWork->It Consists (Windows panel, styles controls, layout, content and so on)
+     ---------------------------- ---------------------------------------------------------------------
+       It implements the end-user presentation features including data binding, time dependencies, animations.
+     
+     
+     
+      c): PresentationCore : This is a API exposed by WPF providing features for 2D,3D, geometry and so on.
+     ----------------------
+  
+  2): Unmanaged Layer: It consists two library
+      
+      a): milcore: It acts as a bridge between WPF managed and the user32.
+       ----------- 
+
+      b): 
+  3): Operating system core element: you might have HP, DEll system there will be different drivers so all these
+                                     these things covered in this layer.
+
+
+
+***********************************************************************************************************************************************************************
+
+XAML Introduction: It is a programming language which is used to create for windows user interface.
+------------------
+
+****Most: (what InitialComponent() method does):
+-----------------------------------------------
+                      It calls LoadComponent() method which convert xml to binary representation by our compiler can 
+                      understand what is a xml language.
+
+****Most: (MarkUp Extention): MarkUp Extention usually used for data binding. MarkUp Extention represent by {} brackets.
+----------------------------  
+
+
+************************************************************************************************************************************************************************
+
+(Style): !)-> Implicit:     
+--------      ---------
+                      <Window.Resources>
+                      <Style TargetType="Button">
+                         <Setter Property="Background" Value="Teal" /> 
+                         <Setter Property="FontFamily" Value="Extrabold" />
+                      </Style>
+                      <Style TargetType="">
+                      // we can use multiple styles
+                      </Style>
+                     </Window.Resources>
+            
+        2)->  Explicit:
+             ----------
+                    <Window.Resources>
+                      <Style TargetType="Button" x:Key="Mystyle">
+                         <Setter Property="Background" Value="Teal" /> 
+                         <Setter Property="FontFamily" Value="Extrabold" />
+                      </Style>
+                         <Style TargetType="">
+                      // we can use multiple styles
+                      </Style>
+                     </Window.Resources>
+            
+            <Button Style="{StaticResource Mystyle}"></Button> // by using this we can aplly styles only on the selected One
+
+Style Inside the Button: This is the one more way to define the style inside the button.
+------------------------
+        <Button Name="Button">
+             <Button.Style>
+                 <Style TargetType="Button" x:Key="Mystyle">            // we use TargetType bcz we use the property of that type
+                         <Setter Property="Background" Value="Teal" /> 
+                         <Setter Property="FontFamily" Value="Extrabold" />
+                 </Style>
+             </ Button.Style>
+        </Button> 
+                     
+
+
+Style Inheritance:    Mostly it is used inside the Explicit styling. As we can give the different style to the different button by using  
+-------------------      style Inheritance the another button can access the same property with including the new property.
+
+
+                  <Window.Resources>
+                      <Style TargetType="Button" x:Key="Mystyle">
+                         <Setter Property="Background" Value="Teal" /> 
+                         <Setter Property="FontFamily" Value="Extrabold" />
+                      </Style>
+                     <Style BasedOn="{StaticResource Mystyle}" TargetType="Button" x:Key="Mystyle2">
+                         // the property of the button will be inherite
+                         <Setter Property="Height" Value="30" />
+                      </Style>
+                 </Window.Resources>
+            
+            <Button Style="{StaticResource Mystyle}"></Button>
+            <Button Style="{StaticResource Mystyle2}"></Button>
