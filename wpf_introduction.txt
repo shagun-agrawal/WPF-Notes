@@ -110,3 +110,82 @@ Style Inheritance:    Mostly it is used inside the Explicit styling. As we can g
             
             <Button Style="{StaticResource Mystyle}"></Button>
             <Button Style="{StaticResource Mystyle2}"></Button>
+
+
+
+Triggers: Trigger are the special type property. By which we can change the style by using some conditions.
+--------- In the style the property change static and by triggers the property changes by some conditions.
+        
+        1): Property Triggers: In this type of triggers if the value of the triggers will be True then it will work otherwise it will back the their previous position.
+          -------------------- This is most common used triggers.
+        
+           Ex: we wants to give the hover effect on the button
+       
+            <Button Content="this is a button">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="Blue"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">  // the condition will be depend here
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontWeight" Value="ExtraBold"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Button.Style>  
+        </Button>
+
+
+        2): Data Triggers:  Represent by <DataTrigger> it is mostly used to bind the data functionality with triggers.
+         -----------------  Ex: If the check box will be checked then the operation will be performed on the button.
+
+        <CheckBox Name="chkBox" Content="CheckMe" />
+         <Button Content="this is a button">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="Blue"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName= chkBox , Path=IsChecked}" Value="True">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontWeight" Value="ExtraBold"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Button.Style>  
+        </Button>
+
+
+        3): Event Trigger: If we want to make some enimation on our screen then we recuired Event Trigger.
+        ------------------
+          <TextBlock Name="textBlock" Text="I am a text block" FontSize="18">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>  // what ever enimation you define inside the
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="" Storyboard.TargetProperty="FontSize" To="30">
+                                            
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>// what ever enimation you define inside the
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="" Storyboard.TargetProperty="FontSize" To="10" />
+                           //what the animation we want to give comes inside the doubleanimation
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
